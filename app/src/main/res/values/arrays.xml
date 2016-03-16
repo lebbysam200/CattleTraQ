@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sign_in_options">
+        <item>@string/farmer</item>
+        <item>@string/herdmanager</item>
+    </string-array>
+</resources>
