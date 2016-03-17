@@ -22,7 +22,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
+<<<<<<< HEAD
         android:text="Email:"
+=======
+        android:text="Username:"
+>>>>>>> 357d3b6f06b0cc34cc4303ed697f9bc2ae437906
         android:id="@+id/user"
         android:layout_marginTop="@dimen/fab_margin"
         android:layout_centerVertical="true"
@@ -113,7 +117,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/password"
         android:layout_below="@+id/user"
+<<<<<<< HEAD
         android:inputType="textPassword"
+=======
+>>>>>>> 357d3b6f06b0cc34cc4303ed697f9bc2ae437906
         android:layout_toRightOf="@+id/pass"
         android:layout_alignRight="@+id/username"
         android:layout_alignEnd="@+id/username" />
@@ -122,7 +129,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/pass_conf"
+<<<<<<< HEAD
         android:inputType="textPassword"
+=======
+>>>>>>> 357d3b6f06b0cc34cc4303ed697f9bc2ae437906
         android:layout_below="@+id/pass"
         android:layout_toRightOf="@+id/pass_confirm"
         android:layout_alignRight="@+id/password"

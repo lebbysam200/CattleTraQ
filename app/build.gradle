@@ -4,12 +4,15 @@ android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
 
+<<<<<<< HEAD
     packagingOptions {
         exclude 'META-INF/LICENSE'
         exclude 'META-INF/LICENSE-FIREBASE.txt'
         exclude 'META-INF/NOTICE'
     }
 
+=======
+>>>>>>> 357d3b6f06b0cc34cc4303ed697f9bc2ae437906
     defaultConfig {
         applicationId "com.example.batendi.myapplication"
         minSdkVersion 15
@@ -27,7 +30,10 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+<<<<<<< HEAD
     compile 'com.firebase:firebase-client-android:2.0.3+'
+=======
+>>>>>>> 357d3b6f06b0cc34cc4303ed697f9bc2ae437906
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.2.1'
 }

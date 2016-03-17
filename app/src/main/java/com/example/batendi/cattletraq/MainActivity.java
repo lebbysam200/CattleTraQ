@@ -10,8 +10,11 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+<<<<<<< HEAD
 import com.firebase.client.Firebase;
 
+=======
+>>>>>>> 357d3b6f06b0cc34cc4303ed697f9bc2ae437906
 public class MainActivity extends AppCompatActivity implements  View.OnClickListener{
     Button login,register;
 
@@ -20,7 +23,11 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+<<<<<<< HEAD
         Firebase.setAndroidContext(this);
+=======
+
+>>>>>>> 357d3b6f06b0cc34cc4303ed697f9bc2ae437906
         login = (Button) findViewById(R.id.login);
         register = (Button) findViewById(R.id.register);
 
