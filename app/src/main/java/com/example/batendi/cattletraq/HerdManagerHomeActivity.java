@@ -3,7 +3,7 @@ package com.example.batendi.cattletraq;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class -HerdManagerHomeActivity extends AppCompatActivity {
+public class HerdManagerHomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
