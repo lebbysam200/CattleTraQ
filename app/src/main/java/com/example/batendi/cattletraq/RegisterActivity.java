@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-<<<<<<< HEAD
 import com.firebase.client.Firebase;
 import com.firebase.client.AuthData;
 import com.firebase.client.FirebaseError;
@@ -16,28 +15,20 @@ import com.firebase.client.FirebaseError;
 import java.util.HashMap;
 import java.util.Map;
 
-=======
->>>>>>> 357d3b6f06b0cc34cc4303ed697f9bc2ae437906
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{
     Button cancel,reg;
     EditText etName, etUsername;
     EditText etPass,etPassConf;
 
-<<<<<<< HEAD
     Firebase ref;
 
-=======
->>>>>>> 357d3b6f06b0cc34cc4303ed697f9bc2ae437906
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-<<<<<<< HEAD
         ref = new Firebase(getResources().getString(R.string.firebase_url));
 
-=======
->>>>>>> 357d3b6f06b0cc34cc4303ed697f9bc2ae437906
         etName = (EditText) findViewById(R.id.name);
         etUsername =(EditText) findViewById(R.id.username);
         etPass = (EditText) findViewById(R.id.password);
@@ -57,18 +48,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 onBackPressed();
                 break;
             case R.id.reg:
-<<<<<<< HEAD
                 Firebase usersRef = ref.child("users");
                 Map<String, String> userMap = new HashMap<String, String>();
 
-=======
->>>>>>> 357d3b6f06b0cc34cc4303ed697f9bc2ae437906
                 String name = etName.getText().toString();
                 String username = etUsername.getText().toString();
                 String pass = etPass.getText().toString();
                 String conf = etPassConf.getText().toString();
 
-<<<<<<< HEAD
                 if(pass.equals(conf)) {
 
                     userMap.put("name", name);
@@ -99,9 +86,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     Toast.makeText(this, "Passwords Do Not Match, Try Again", Toast.LENGTH_LONG).show();
                 }
 
-
-=======
->>>>>>> 357d3b6f06b0cc34cc4303ed697f9bc2ae437906
                 break;
         }
     }

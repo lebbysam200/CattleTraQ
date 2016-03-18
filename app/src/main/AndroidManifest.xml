@@ -6,10 +6,7 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-<<<<<<< HEAD
     <uses-permission android:name="android.permission.INTERNET" />
-=======
->>>>>>> 357d3b6f06b0cc34cc4303ed697f9bc2ae437906
 
     <application
         android:allowBackup="true"
@@ -26,11 +23,11 @@
         </activity>
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
-<<<<<<< HEAD
         <activity android:name=".FarmerHomeActivity" />
-        <activity android:name=".HerdManagerHomeActivity"></activity>
-=======
->>>>>>> 357d3b6f06b0cc34cc4303ed697f9bc2ae437906
+        <activity android:name=".HerdManagerHomeActivity" />
+        <activity android:name=".HerdManagerActivity" />
+        <activity android:name=".RegisterCowActivity" />
+        <activity android:name=".GetCowLocationActivity"></activity>
     </application>
 
 </manifest>

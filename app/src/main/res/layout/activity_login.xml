@@ -30,11 +30,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-<<<<<<< HEAD
         android:text="Email:"
-=======
-        android:text="Username:"
->>>>>>> 357d3b6f06b0cc34cc4303ed697f9bc2ae437906
         android:id="@+id/uname"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
