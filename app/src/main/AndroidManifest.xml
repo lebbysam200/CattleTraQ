@@ -24,7 +24,6 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".FarmerHomeActivity" />
-        <activity android:name=".HerdManagerHomeActivity" />
         <activity android:name=".HerdManagerActivity" />
         <activity android:name=".RegisterCowActivity" />
         <activity android:name=".GetCowLocationActivity"></activity>

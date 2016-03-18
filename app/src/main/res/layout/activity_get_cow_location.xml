@@ -24,21 +24,21 @@
         android:layout_below="@+id/logo"
         android:id="@+id/tvPickCow"/>
 
-    <ExpandableListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/lvCattleList"
-        android:layout_below="@id/tvPickCow"
-        android:layout_alignParentRight="true"
-        />
-
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Locate"
         android:id="@+id/locate"
-        android:layout_below="@+id/lvCattleList"
-        android:layout_alignParentBottom="true"/>
+        android:layout_alignParentBottom="true" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cattle_list"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/locate"
+        android:layout_below="@+id/tvPickCow" />
 
 
 </RelativeLayout>

@@ -41,6 +41,8 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        setTitle("Login");
+
         mFirebaseRef = new Firebase(getResources().getString(R.string.firebase_url));
 
         mAuthProgressDialog = new ProgressDialog(this);

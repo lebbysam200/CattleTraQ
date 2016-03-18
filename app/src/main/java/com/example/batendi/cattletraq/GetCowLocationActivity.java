@@ -13,5 +13,7 @@ public class GetCowLocationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_cow_location);
 
+        setTitle("Get Cow Location");
+
     }
 }

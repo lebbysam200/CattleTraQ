@@ -23,7 +23,7 @@
         android:text="RFID:"
         android:id="@+id/tvRfid"
         android:layout_below="@+id/logo"
-        android:layout_marginTop="49dp"/>
+        android:layout_marginTop="20dp"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -31,7 +31,7 @@
         android:id="@+id/rfid"
         android:layout_toRightOf="@+id/tvRfid"
         android:layout_below="@id/logo"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:layout_alignParentRight="true"/>
 
     <TextView
@@ -40,7 +40,7 @@
         android:id="@+id/tvColor"
         android:text="Color:"
         android:layout_below="@+id/tvRfid"
-        android:layout_marginTop="25dp"/>
+        android:layout_marginTop="30dp"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -66,16 +66,6 @@
         android:layout_below="@+id/tvDob"
         android:layout_marginTop="20dp"/>
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/motherRfid"
-        android:layout_below="@+id/dob"
-        android:layout_alignLeft="@+id/logo"
-        android:layout_alignStart="@+id/logo"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -89,18 +79,25 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/motherRfid"
-        android:layout_marginTop="20dp"
         android:text="Register"
         android:id="@+id/regCow"
-        />
+        android:layout_below="@+id/motherRfid" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/regCow"
         android:id="@+id/cancelReg"
         android:text="Cancel"
-        android:layout_marginTop="10dp"/>
+        android:layout_below="@+id/regCow"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/motherRfid"
+        android:layout_below="@+id/dob"
+        android:layout_alignLeft="@+id/dob"
+        android:layout_alignStart="@+id/dob"
+        android:layout_alignRight="@+id/dob"
+        android:layout_alignEnd="@+id/dob" />
 
 </RelativeLayout>

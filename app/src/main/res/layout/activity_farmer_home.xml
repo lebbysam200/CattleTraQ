@@ -35,7 +35,7 @@
         android:layout_below="@+id/register_cow"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="10dp" />
 
     <Button
         android:layout_width="match_parent"
@@ -45,7 +45,7 @@
         android:layout_below="@+id/get_location"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="10dp" />
 
     <Button
         android:layout_width="match_parent"
@@ -55,7 +55,7 @@
         android:layout_below="@+id/delete_cow"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="10dp" />
 
 
 
