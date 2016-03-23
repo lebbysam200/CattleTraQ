@@ -27,8 +27,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        setTitle("Register");
 
+        Firebase.setAndroidContext(this);
+
+        setTitle("Register");
         ref = new Firebase(getResources().getString(R.string.firebase_url));
 
         etName = (EditText) findViewById(R.id.name);
@@ -65,7 +67,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     userMap.put("password", pass);
 
                     User user = new User(username,name,pass);
-                    usersRef.setValue(user);
+                    usersRef.push().setValue(user);
 
                     Map<String, Map<String, String>> users = new HashMap<String, Map<String, String>>();
                     users.put("user", userMap);
@@ -78,9 +80,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                         @Override
                         public void onError(FirebaseError firebaseError) {
-                            // there was an error
+                            Toast.makeText(RegisterActivity.this, "Registration Failed, Please Try Again", Toast.LENGTH_LONG).show();
                         }
                     });
+
                     RegisterActivity.this.finish();
                     startActivity(new Intent(this, LoginActivity.class));
 

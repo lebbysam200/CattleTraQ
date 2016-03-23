@@ -29,8 +29,8 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
     Spinner spinner;
     private Firebase mFirebaseRef;
     private ProgressDialog mAuthProgressDialog;
-
-    private AuthData mAuthData;
+    String item;
+    AuthData mAuthData;
 
     private static final String TAG = LoginActivity.class.getSimpleName();
     Button cancel,login;
@@ -92,8 +92,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        //TextView myText = (TextView) view;
-        String item = parent.getItemAtPosition(position).toString();
+        item = parent.getItemAtPosition(position).toString();
 
         Toast.makeText(this, "Login as " + item, Toast.LENGTH_SHORT).show();
     }
@@ -130,7 +129,12 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
             Log.i(TAG, provider + " auth successful");
             setAuthenticatedUser(authData);
             LoginActivity.this.finish();
+            if (item.equals("Farmer")){
             startActivity(new Intent(LoginActivity.this,FarmerHomeActivity.class));
+            }
+            else{
+                startActivity(new Intent(LoginActivity.this,HerdManagerActivity.class));
+            }
         }
 
         @Override

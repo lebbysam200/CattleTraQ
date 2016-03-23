@@ -53,18 +53,22 @@ public class RegisterCowActivity extends AppCompatActivity implements View.OnCli
                 String dob = etDob.getText().toString();
                 String mother = etMotherRfid.getText().toString();
 
-                Firebase cattleRef = ref.child("cattle");
-                Map<String, String> cattleMap = new HashMap<String, String>();
+                if (!rfid.equals("")) {
+                    Firebase cattleRef = ref.child("cattle");
+                    Map<String, String> cattleMap = new HashMap<String, String>();
 
-                cattleMap.put("rfid", rfid);
-                cattleMap.put("color", color);
-                cattleMap.put("dob", dob);
-                cattleMap.put("mother", mother);
+                    cattleMap.put("rfid", rfid);
+                    cattleMap.put("color", color);
+                    cattleMap.put("dob", dob);
+                    cattleMap.put("mother", mother);
 
-                Cow cow = new Cow(rfid,color,dob,mother);
-                cattleRef.setValue(cow);
+                    cattleRef.push().setValue(cattleMap);
 
-                Toast.makeText(this, "Successfully Added Cow", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Successfully Added Cow", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    Toast.makeText(this, "Please Enter Cow RFID", Toast.LENGTH_LONG).show();
+                }
 
                 break;
             case R.id.cancelReg:

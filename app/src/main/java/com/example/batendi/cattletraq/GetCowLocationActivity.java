@@ -1,19 +1,78 @@
 package com.example.batendi.cattletraq;
 
 import android.app.ExpandableListActivity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
-public class GetCowLocationActivity extends AppCompatActivity {
+import com.firebase.client.ChildEventListener;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class GetCowLocationActivity extends AppCompatActivity implements View.OnClickListener {
 
     ExpandableListActivity elaCattleList;
+    Button bLocate;
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_cow_location);
+        Firebase.setAndroidContext(this);
 
         setTitle("Get Cow Location");
 
+        bLocate = (Button) findViewById(R.id.locate);
+        bLocate.setOnClickListener(this);
+
+        Firebase ref = new Firebase("https://flickering-inferno-9581.firebaseio.com/cattle");
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                List<String> cattleList = new ArrayList<String>();
+                for (DataSnapshot cow : dataSnapshot.getChildren()) {
+                    String rfid = (String) cow.child("rfid").getValue();
+                    cattleList.add(rfid);
+                }
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(GetCowLocationActivity.this, R.layout.rfid_list, cattleList);
+                ListView listView = (ListView) findViewById(R.id.cattle_list);
+                listView.setAdapter(adapter);
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        String item = parent.getItemAtPosition(position).toString();
+                        Toast.makeText(GetCowLocationActivity.this, "Locate"+ item, Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(GetCowLocationActivity.this, DisplayLocationActivity.class));
+                    }
+                });
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+            }
+        });
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.locate:
+                startActivity(new Intent(this,DisplayLocationActivity.class));
+                break;
+        }
     }
 }
