@@ -15,6 +15,7 @@
         completions."
     </string>
     <string name="farmer"> Farmer </string>
+    <string name="rfid"></string>
     <string name="herdmanager">Herdboy/Herdman</string>
     <string name="title_activity_login_b">Sign in</string>
 

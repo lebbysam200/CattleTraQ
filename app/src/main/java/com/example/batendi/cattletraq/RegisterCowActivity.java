@@ -16,7 +16,7 @@ public class RegisterCowActivity extends AppCompatActivity implements View.OnCli
 
     Button bCancelReg,bRegCow;
     EditText etRfid, etColor;
-    EditText etDob,etMotherRfid;
+    EditText etDob,etMotherRfid,etKraalLocation;
 
     Firebase ref;
 
@@ -35,6 +35,7 @@ public class RegisterCowActivity extends AppCompatActivity implements View.OnCli
         etColor = (EditText) findViewById(R.id.color);
         etDob = (EditText) findViewById(R.id.dob);
         etMotherRfid = (EditText) findViewById(R.id.motherRfid);
+        etKraalLocation = (EditText) findViewById(R.id.kraalLoc);
 
         bRegCow = (Button) findViewById(R.id.regCow);
         bCancelReg = (Button) findViewById(R.id.cancelReg);
@@ -52,6 +53,7 @@ public class RegisterCowActivity extends AppCompatActivity implements View.OnCli
                 String color = etColor.getText().toString();
                 String dob = etDob.getText().toString();
                 String mother = etMotherRfid.getText().toString();
+                String kraal = etKraalLocation.getText().toString();
 
                 if (!rfid.equals("")) {
                     Firebase cattleRef = ref.child("cattle");
@@ -61,6 +63,7 @@ public class RegisterCowActivity extends AppCompatActivity implements View.OnCli
                     cattleMap.put("color", color);
                     cattleMap.put("dob", dob);
                     cattleMap.put("mother", mother);
+                    cattleMap.put("kraal location",kraal);
 
                     cattleRef.push().setValue(cattleMap);
 

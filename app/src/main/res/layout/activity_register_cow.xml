@@ -31,7 +31,6 @@
         android:id="@+id/rfid"
         android:layout_toRightOf="@+id/tvRfid"
         android:layout_below="@id/logo"
-        android:layout_marginTop="10dp"
         android:layout_alignParentRight="true"/>
 
     <TextView
@@ -40,7 +39,7 @@
         android:id="@+id/tvColor"
         android:text="Color:"
         android:layout_below="@+id/tvRfid"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="20dp"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -81,14 +80,18 @@
         android:layout_height="wrap_content"
         android:text="Register"
         android:id="@+id/regCow"
-        android:layout_below="@+id/motherRfid" />
+        android:layout_below="@+id/kraalLoc"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/cancelReg"
         android:text="Cancel"
-        android:layout_below="@+id/regCow"/>
+        android:layout_below="@+id/regCow"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -99,5 +102,23 @@
         android:layout_alignStart="@+id/dob"
         android:layout_alignRight="@+id/dob"
         android:layout_alignEnd="@+id/dob" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/kraalLoc"
+        android:layout_below="@+id/motherRfid"
+        android:layout_alignRight="@+id/motherRfid"
+        android:layout_alignEnd="@+id/motherRfid"
+        android:layout_toRightOf="@+id/tvKraalLocation"
+        android:layout_toEndOf="@+id/tvKraalLocation" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvKraalLocation"
+        android:text="Kraal Location:"
+        android:layout_below="@+id/tvMotherRfid"
+        android:layout_marginTop="25dp"/>
 
 </RelativeLayout>

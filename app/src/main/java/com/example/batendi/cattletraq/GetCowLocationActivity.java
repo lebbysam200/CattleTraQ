@@ -23,9 +23,8 @@ import java.util.List;
 
 public class GetCowLocationActivity extends AppCompatActivity implements View.OnClickListener {
 
-    ExpandableListActivity elaCattleList;
     Button bLocate;
-    TextView textView;
+    String cowRfid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +43,8 @@ public class GetCowLocationActivity extends AppCompatActivity implements View.On
             public void onDataChange(DataSnapshot dataSnapshot) {
                 List<String> cattleList = new ArrayList<String>();
                 for (DataSnapshot cow : dataSnapshot.getChildren()) {
-                    String rfid = (String) cow.child("rfid").getValue();
-                    cattleList.add(rfid);
+                    cowRfid = (String) cow.child("rfid").getValue();
+                    cattleList.add(cowRfid);
                 }
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(GetCowLocationActivity.this, R.layout.rfid_list, cattleList);
                 ListView listView = (ListView) findViewById(R.id.cattle_list);
@@ -54,6 +53,8 @@ public class GetCowLocationActivity extends AppCompatActivity implements View.On
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         String item = parent.getItemAtPosition(position).toString();
+                        Cow mycow = new Cow();
+                        mycow.rfid = item;
                         Toast.makeText(GetCowLocationActivity.this, "Locate"+ item, Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(GetCowLocationActivity.this, DisplayLocationActivity.class));
                     }
