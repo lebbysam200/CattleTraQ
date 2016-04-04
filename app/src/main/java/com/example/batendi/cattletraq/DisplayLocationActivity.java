@@ -88,7 +88,6 @@ public class DisplayLocationActivity extends AppCompatActivity {
                                         myLocationOverlay = new MyLocationOverlay(DisplayLocationActivity.this, mapView);
                                         mapView.getOverlays().add(myLocationOverlay);
                                         myLocationOverlay.enableMyLocation();
-                                        Toast.makeText(DisplayLocationActivity.this, "Latitude" + latitude, Toast.LENGTH_LONG).show();
 
                                     }
                                 }

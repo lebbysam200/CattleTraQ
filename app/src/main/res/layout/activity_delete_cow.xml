@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.batendi.cattletraq.GetCowLocationActivity">
+    tools:context=".DeleteCowActivity">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -20,9 +20,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Please Pick the cow whose location you wish to get"
+        android:text="Please Pick the cow you wish to delete"
+        android:id="@+id/tvPickCow"
         android:layout_below="@+id/logo"
-        android:id="@+id/tvPickCow"/>
+        android:layout_centerHorizontal="true" />
 
     <ListView
         android:layout_width="wrap_content"
@@ -31,6 +32,5 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/tvPickCow" />
-
 
 </RelativeLayout>
