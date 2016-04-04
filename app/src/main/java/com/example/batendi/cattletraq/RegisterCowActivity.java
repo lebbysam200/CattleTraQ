@@ -81,6 +81,7 @@ public class RegisterCowActivity extends AppCompatActivity implements View.OnCli
                 String kraal = etKraalLocation.getText().toString();
 
                 if (!rfid.equals("")&& !cattleList.contains(rfid)) {
+                    Firebase cattleRef = ref.child("");
                     Map<String, String> cattleMap = new HashMap<String, String>();
 
                     cattleMap.put("rfid", rfid);

@@ -11,11 +11,16 @@ public class User {
     private String name;
     private String username;
     String password;
+    boolean online;
 
+    public User(){
+        this.online = false;
+    }
     public User(String name, String username,String password) {
         this.name = name;
         this.username = username;
         this.password = password;
+        this.online = false;
     }
 
     public String getUsername() {

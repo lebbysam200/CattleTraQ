@@ -74,7 +74,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 onBackPressed();
                 break;
             case R.id.reg:
-                Firebase usersRef = ref.child("users");
                 Map<String, String> userMap = new HashMap<String, String>();
 
                 String name = etName.getText().toString();
@@ -86,10 +85,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                     userMap.put("name", name);
                     userMap.put("username", username);
-                    userMap.put("password", pass);
 
                     User user = new User(username,name,pass);
-                    usersRef.push().setValue(user);
+                    ref.push().setValue(user);
 
                     Map<String, Map<String, String>> users = new HashMap<String, Map<String, String>>();
                     users.put("user", userMap);
