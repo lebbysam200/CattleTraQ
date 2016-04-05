@@ -7,9 +7,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class FarmerHomeActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button bLocateCow,bRegCow,bLogout,bDelete;
+    Firebase ref;
+    List<String> cattleList;
+    String cowRfid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +29,7 @@ public class FarmerHomeActivity extends AppCompatActivity implements View.OnClic
 
         setTitle("Farmer Home");
 
+        ref = new Firebase("https://flickering-inferno-9581.firebaseio.com/cattle");
         bRegCow = (Button) findViewById(R.id.register_cow);
         bRegCow.setOnClickListener(this);
 
@@ -47,6 +59,7 @@ public class FarmerHomeActivity extends AppCompatActivity implements View.OnClic
                 Toast.makeText(this, "Please Login to Continue" , Toast.LENGTH_SHORT).show();
                 break;
             case R.id.delete_cow:
+                startActivity(new Intent(this,DeleteCowActivity.class));
                 break;
 
         }
