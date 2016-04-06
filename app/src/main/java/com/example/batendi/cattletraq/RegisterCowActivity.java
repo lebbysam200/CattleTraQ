@@ -40,6 +40,20 @@ public class RegisterCowActivity extends AppCompatActivity implements View.OnCli
         setTitle("Register Cow");
 
         ref = new Firebase("https://flickering-inferno-9581.firebaseio.com/cattle");
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                cattleList = new ArrayList<String>();
+                for (DataSnapshot cow : dataSnapshot.getChildren()) {
+                    cowRfid = (String) cow.child("rfid").getValue();
+                    cattleList.add(cowRfid);
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+            }
+        });
 
         etRfid = (EditText) findViewById(R.id.rfid);
         etColor = (EditText) findViewById(R.id.color);
@@ -66,7 +80,6 @@ public class RegisterCowActivity extends AppCompatActivity implements View.OnCli
                 String kraal = etKraalLocation.getText().toString();
 
                 if (!rfid.equals("")&& !cattleList.contains(rfid)) {
-                    Firebase cattleRef = ref.child("");
                     Map<String, String> cattleMap = new HashMap<String, String>();
 
                     cattleMap.put("rfid", rfid);

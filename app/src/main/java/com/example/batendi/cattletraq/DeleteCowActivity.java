@@ -1,5 +1,7 @@
 package com.example.batendi.cattletraq;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,7 +22,7 @@ import java.util.List;
 
 public class DeleteCowActivity extends AppCompatActivity {
 
-    String cowRfid;
+    String cowRfid,item;
     Firebase cowRef;
 
     @Override
@@ -48,11 +50,26 @@ public class DeleteCowActivity extends AppCompatActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         TextView itemClicked = (TextView) view;
-                        String item = itemClicked.getText().toString();
-                        if (cattleList.contains(item)){
+                        item = itemClicked.getText().toString();
+                        AlertDialog.Builder alertDialog = new AlertDialog.Builder(DeleteCowActivity.this);
+                        alertDialog.setTitle("Delete Cow Confirm");
+                        alertDialog.setMessage("Delete " + item + "?");
+                        alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
                             cowRef.removeValue();
                             Toast.makeText(DeleteCowActivity.this, "Cow successfully deleted." + item, Toast.LENGTH_SHORT).show();
                         }
+                    });
+
+                    alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Toast.makeText(DeleteCowActivity.this, "Cancelled.", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                        alertDialog.show();
+
                     }
                 });
                 }
