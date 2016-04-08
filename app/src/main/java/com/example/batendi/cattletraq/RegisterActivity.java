@@ -81,7 +81,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 String pass = etPass.getText().toString();
                 String conf = etPassConf.getText().toString();
 
-                if(pass.equals(conf) && !userList.contains(username)) {
+                if(pass.equals(conf) && !userList.contains(username)&& validateString(name)) {
 
                     userMap.put("name", name);
                     userMap.put("username", username);
@@ -111,6 +111,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     }
 
                 }
+                else if(!validateString(name)){
+                    Toast.makeText(this, "Please Enter a valid name", Toast.LENGTH_LONG).show();
+                    finish();
+                    startActivity(getIntent());
+                }
                 else if(userList.contains(username)){
                     Toast.makeText(this, "User already exists", Toast.LENGTH_LONG).show();
                 }else {
@@ -119,5 +124,17 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                 break;
         }
+    }
+
+    public boolean validateString(String string){
+        boolean isString = true;
+        try {
+            int num = Integer.parseInt(string);
+            isString = false;
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+
+        return isString;
     }
 }

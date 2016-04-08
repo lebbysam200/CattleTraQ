@@ -26,6 +26,7 @@ public class FarmerHomeActivity extends AppCompatActivity implements View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_farmer_home);
+        Firebase.setAndroidContext(this);
 
         setTitle("Farmer Home");
 
@@ -51,7 +52,7 @@ public class FarmerHomeActivity extends AppCompatActivity implements View.OnClic
                 startActivity(new Intent(this,GetCowLocationActivity.class));
                 break;
             case R.id.register_cow:
-                startActivity(new Intent(this,RegisterCowActivity.class));
+                startActivity(new Intent(this,DateActivity.class));
                 break;
             case R.id.logout:
                 onBackPressed();

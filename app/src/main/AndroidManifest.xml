@@ -33,7 +33,8 @@
         <activity android:name=".RegisterCowActivity" />
         <activity android:name=".GetCowLocationActivity" />
         <activity android:name=".DisplayLocationActivity" />
-        <activity android:name=".DeleteCowActivity"></activity>
+        <activity android:name=".DeleteCowActivity" />
+        <activity android:name=".DateActivity"></activity>
     </application>
 
 </manifest>

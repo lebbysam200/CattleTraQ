@@ -7,28 +7,30 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".DisplayLocationActivity">
+    tools:context="com.example.batendi.cattletraq.DateActivity">
 
-    <TextView
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/logo"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="hello_world"
-        tools:context=".MainActivity" />
+        android:src="@drawable/logo"/>
 
-    <org.osmdroid.views.MapView
-        android:id="@+id/mapview"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:clickable="true"/>
+    <DatePicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/date"
+        android:layout_below="@+id/logo"
+        android:layout_alignParentRight="true"/>
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Get Path"
-        android:id="@+id/getPath"
-        android:layout_alignBottom="@+id/mapview"
-        android:layout_centerHorizontal="true" />
+        android:text="Set"
+        android:id="@+id/set"
+        android:layout_alignBottom="@+id/date"
+        android:layout_alignRight="@+id/logo"
+        android:layout_alignEnd="@+id/logo" />
 
 </RelativeLayout>

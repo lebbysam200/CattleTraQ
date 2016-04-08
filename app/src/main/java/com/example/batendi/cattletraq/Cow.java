@@ -6,4 +6,5 @@ package com.example.batendi.cattletraq;
 public class Cow
 {
     public static String rfid ;
+    public static String birthdate;
 }

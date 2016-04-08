@@ -45,7 +45,7 @@ public class HerdManagerActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.reg_cow:
-                startActivity(new Intent(this,RegisterCowActivity.class));
+                startActivity(new Intent(this,DateActivity.class));
                 break;
             case R.id.logout:
                 onBackPressed();
