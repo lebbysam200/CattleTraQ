@@ -8,10 +8,13 @@ import com.firebase.client.Firebase;
 public class User {
 
 
-    private String name;
+    public String name;
     private String username;
     String password;
     boolean online;
+    public static String onlineUser;
+    public static String onlineUserType;
+    public static String employer;
 
     public User(){
         this.online = false;

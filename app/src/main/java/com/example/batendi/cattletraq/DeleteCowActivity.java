@@ -32,7 +32,8 @@ public class DeleteCowActivity extends AppCompatActivity {
         setTitle("Delete Cow");
         Firebase.setAndroidContext(this);
 
-        final String url = "https://flickering-inferno-9581.firebaseio.com/cattle";
+        final User registerer = new User();
+        final String url = "https://flickering-inferno-9581.firebaseio.com/"+registerer.onlineUser+"/cattle";
         Firebase ref = new Firebase(url);
         ref.addValueEventListener(new ValueEventListener() {
             @Override

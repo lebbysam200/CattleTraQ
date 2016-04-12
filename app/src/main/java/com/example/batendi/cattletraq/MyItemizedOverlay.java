@@ -8,11 +8,13 @@ import java.util.ArrayList;
 import org.osmdroid.ResourceProxy;
 import org.osmdroid.api.IMapView;
 import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.ItemizedOverlay;
 import org.osmdroid.views.overlay.OverlayItem;
 
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
 
 public class MyItemizedOverlay extends ItemizedOverlay<OverlayItem> {
 
@@ -21,7 +23,6 @@ public class MyItemizedOverlay extends ItemizedOverlay<OverlayItem> {
     public MyItemizedOverlay(Drawable pDefaultMarker,
                              ResourceProxy pResourceProxy) {
         super(pDefaultMarker, pResourceProxy);
-        // TODO Auto-generated constructor stub
     }
 
     public void addItem(GeoPoint p, String title, String snippet){
@@ -32,20 +33,23 @@ public class MyItemizedOverlay extends ItemizedOverlay<OverlayItem> {
 
     @Override
     public boolean onSnapToItem(int arg0, int arg1, Point arg2, IMapView arg3) {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     protected OverlayItem createItem(int arg0) {
-        // TODO Auto-generated method stub
         return overlayItemList.get(arg0);
     }
 
     @Override
     public int size() {
-        // TODO Auto-generated method stub
         return overlayItemList.size();
+    }
+
+    @Override
+    public boolean onSingleTapConfirmed(MotionEvent event, MapView mapView){
+
+        return true;
     }
 
 }

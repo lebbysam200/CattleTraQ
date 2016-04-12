@@ -13,7 +13,9 @@ import org.osmdroid.api.IMapController;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
+import org.osmdroid.views.overlay.ItemizedIconOverlay;
 import org.osmdroid.views.overlay.MyLocationOverlay;
+import org.osmdroid.views.overlay.OverlayItem;
 import org.osmdroid.views.overlay.PathOverlay;
 
 import android.graphics.drawable.Drawable;;
@@ -53,7 +55,8 @@ public class DisplayLocationActivity extends AppCompatActivity implements View.O
     }
 
     public void getKraalLocation(){
-        Firebase ref = new Firebase("https://flickering-inferno-9581.firebaseio.com/cattle");
+        final User registerer = new User();
+        Firebase ref = new Firebase("https://flickering-inferno-9581.firebaseio.com/"+registerer.onlineUser+"/cattle");
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

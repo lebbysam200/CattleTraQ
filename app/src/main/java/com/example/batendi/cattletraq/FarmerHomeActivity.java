@@ -17,7 +17,7 @@ import java.util.List;
 
 public class FarmerHomeActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button bLocateCow,bRegCow,bLogout,bDelete;
+    Button bLocateCow,bRegCow,bLogout,bDelete,bRegMan;
     Firebase ref;
     List<String> cattleList;
     String cowRfid;
@@ -43,6 +43,9 @@ public class FarmerHomeActivity extends AppCompatActivity implements View.OnClic
         bDelete = (Button) findViewById(R.id.delete_cow);
         bDelete.setOnClickListener(this);
 
+        bRegMan = (Button) findViewById(R.id.regManager);
+        bRegMan.setOnClickListener(this);
+
     }
 
     @Override
@@ -61,6 +64,9 @@ public class FarmerHomeActivity extends AppCompatActivity implements View.OnClic
                 break;
             case R.id.delete_cow:
                 startActivity(new Intent(this,DeleteCowActivity.class));
+                break;
+            case R.id.regManager:
+                startActivity(new Intent(this,RegisterHerdManager.class));
                 break;
 
         }

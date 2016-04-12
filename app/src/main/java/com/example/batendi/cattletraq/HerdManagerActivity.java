@@ -7,16 +7,21 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class HerdManagerActivity extends AppCompatActivity implements View.OnClickListener{
     Button bRegCow,bLogKraal,bLogRelease,bLogout;
-    Firebase ref;
+    Firebase ref,ref1;
+    String user,employer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +31,26 @@ public class HerdManagerActivity extends AppCompatActivity implements View.OnCli
         setTitle("Herd Manager Home");
         Firebase.setAndroidContext(this);
 
-        ref = new Firebase("https://flickering-inferno-9581.firebaseio.com");
+        final User registerer = new User();
+        ref1 = new Firebase("https://flickering-inferno-9581.firebaseio.com/users");
+        ref1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot user1 : dataSnapshot.getChildren()) {
+                    user = (String) user1.child("username").getValue();
+                    if (registerer.onlineUser.equals(user.replace(".com",""))) {
+                        employer = (String) user1.child("employer").getValue();
+                        ref = new Firebase("https://flickering-inferno-9581.firebaseio.com/"+employer);
+                        break;
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+            }
+        });
 
         bRegCow = (Button) findViewById(R.id.reg_cow);
         bRegCow.setOnClickListener(this);
@@ -65,7 +89,7 @@ public class HerdManagerActivity extends AppCompatActivity implements View.OnCli
                 String currentTime = DateFormat.getDateTimeInstance().format(new Date());
                 Firebase kraalTimes = ref.child("kraalTimes");
                 Map<String, String> time = new HashMap<String, String>();
-                time.put("release time",currentTime);
+                time.put("kraal time",currentTime);
                 kraalTimes.push().setValue(time);
 
                 Toast.makeText(this, "Kraaled at "+currentTime, Toast.LENGTH_SHORT).show();

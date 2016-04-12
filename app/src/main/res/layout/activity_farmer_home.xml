@@ -33,9 +33,8 @@
         android:text="Get Cow Location"
         android:id="@+id/get_location"
         android:layout_below="@+id/register_cow"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="10dp" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="match_parent"
@@ -44,20 +43,27 @@
         android:id="@+id/delete_cow"
         android:layout_below="@+id/get_location"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="10dp" />
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Logout"
         android:id="@+id/logout"
-        android:layout_below="@+id/delete_cow"
+        android:layout_below="@+id/regManager"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="10dp" />
+        android:layout_alignParentEnd="true" />
 
-
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register Herd Manager"
+        android:id="@+id/regManager"
+        android:layout_below="@+id/delete_cow"
+        android:layout_alignRight="@+id/delete_cow"
+        android:layout_alignEnd="@+id/delete_cow"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>

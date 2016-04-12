@@ -33,7 +33,8 @@ public class GetCowLocationActivity extends AppCompatActivity {
 
         Firebase.setAndroidContext(this);
 
-        Firebase ref = new Firebase("https://flickering-inferno-9581.firebaseio.com/cattle");
+        final User registerer = new User();
+        Firebase ref = new Firebase("https://flickering-inferno-9581.firebaseio.com/"+registerer.onlineUser+"/cattle");
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

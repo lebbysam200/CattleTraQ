@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
     Spinner spinner;
     private Firebase mFirebaseRef;
     private ProgressDialog mAuthProgressDialog;
-    String item;
+    String item,userType;
     AuthData mAuthData;
 
     private static final String TAG = LoginActivity.class.getSimpleName();
@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        Firebase.setAndroidContext(this);
         setTitle("Login");
 
         mFirebaseRef = new Firebase(getResources().getString(R.string.firebase_url));
@@ -130,9 +130,17 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
             setAuthenticatedUser(authData);
             LoginActivity.this.finish();
             if (item.equals("Farmer")){
-            startActivity(new Intent(LoginActivity.this,FarmerHomeActivity.class));
+                User user = new User();
+                String online = etUsername.getText().toString();
+                user.onlineUser = online.replace(".com","");
+                user.onlineUserType = "farmer";
+                startActivity(new Intent(LoginActivity.this, FarmerHomeActivity.class));
             }
             else{
+                User user = new User();
+                String online = etUsername.getText().toString();
+                user.onlineUser = online.replace(".com", "");
+                user.onlineUserType = "manager";
                 startActivity(new Intent(LoginActivity.this,HerdManagerActivity.class));
             }
         }

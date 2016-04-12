@@ -29,9 +29,11 @@ public class RegisterCowActivity extends AppCompatActivity implements View.OnCli
     EditText etMotherRfid,etKraalLocation;
     EditText etDob;
 
-    Firebase ref;
-    String cowRfid;
+    Firebase ref,ref1;
+    String cowRfid,user;
     List<String> cattleList;
+    String employer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,22 +42,61 @@ public class RegisterCowActivity extends AppCompatActivity implements View.OnCli
         Firebase.setAndroidContext(this);
 
         setTitle("Register Cow");
+        final User registerer = new User();
+        if(registerer.onlineUserType.equals("farmer")){
+            ref = new Firebase("https://flickering-inferno-9581.firebaseio.com/"+registerer.onlineUser+"/cattle");
 
-        ref = new Firebase("https://flickering-inferno-9581.firebaseio.com/cattle");
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                cattleList = new ArrayList<String>();
-                for (DataSnapshot cow : dataSnapshot.getChildren()) {
-                    cowRfid = (String) cow.child("rfid").getValue();
-                    cattleList.add(cowRfid);
+            ref.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    cattleList = new ArrayList<String>();
+                    for (DataSnapshot cow : dataSnapshot.getChildren()) {
+                        cowRfid = (String) cow.child("rfid").getValue();
+                        cattleList.add(cowRfid);
+                    }
                 }
-            }
 
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-            }
-        });
+                @Override
+                public void onCancelled(FirebaseError firebaseError) {
+                }
+            });
+        }else{
+            ref1 = new Firebase("https://flickering-inferno-9581.firebaseio.com/users");
+            ref1.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for (DataSnapshot user1 : dataSnapshot.getChildren()) {
+                        user = (String) user1.child("username").getValue();
+                        if (registerer.onlineUser.equals(user.replace(".com",""))) {
+                            employer = (String) user1.child("employer").getValue();
+                            ref = new Firebase("https://flickering-inferno-9581.firebaseio.com/"+employer+"/cattle");
+                            ref.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    cattleList = new ArrayList<String>();
+                                    for (DataSnapshot cow : dataSnapshot.getChildren()) {
+                                        cowRfid = (String) cow.child("rfid").getValue();
+                                        cattleList.add(cowRfid);
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(FirebaseError firebaseError) {
+                                }
+                            });
+                            break;
+                        }
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(FirebaseError firebaseError) {
+                }
+            });
+
+        }
+
         Cow myCow = new Cow();
 
         etRfid = (EditText) findViewById(R.id.rfid);

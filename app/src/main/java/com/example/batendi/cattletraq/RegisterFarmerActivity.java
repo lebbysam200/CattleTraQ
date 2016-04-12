@@ -1,6 +1,5 @@
 package com.example.batendi.cattletraq;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,7 +11,6 @@ import android.widget.Toast;
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
-import com.firebase.client.AuthData;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
@@ -21,30 +19,31 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{
+public class RegisterFarmerActivity extends AppCompatActivity implements View.OnClickListener{
     Button cancel,reg;
     EditText etName, etUsername;
-    EditText etPass,etPassConf;
+    EditText etPass,etPassConf,etKraal;
 
-    Firebase ref;
+    Firebase ref,ref1;
     List<String> userList;
-    String user;
+    String user,username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_register_farmer);
 
         Firebase.setAndroidContext(this);
 
-        setTitle("Register");
+        setTitle("Register As Farmer");
+
         ref = new Firebase("https://flickering-inferno-9581.firebaseio.com/users");
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 userList = new ArrayList<String>();
-                for (DataSnapshot cow : dataSnapshot.getChildren()) {
-                    user = (String) cow.child("username").getValue();
+                for (DataSnapshot user1 : dataSnapshot.getChildren()) {
+                    user = (String) user1.child("username").getValue();
                     userList.add(user);
                 }
 
@@ -59,6 +58,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         etUsername =(EditText) findViewById(R.id.username);
         etPass = (EditText) findViewById(R.id.password);
         etPassConf = (EditText) findViewById(R.id.pass_conf);
+        etKraal = (EditText) findViewById(R.id.krallLoc);
 
         reg = (Button) findViewById(R.id.reg);
         reg.setOnClickListener(this);
@@ -77,7 +77,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 Map<String, String> userMap = new HashMap<String, String>();
 
                 String name = etName.getText().toString();
-                String username = etUsername.getText().toString();
+                username = etUsername.getText().toString();
                 String pass = etPass.getText().toString();
                 String conf = etPassConf.getText().toString();
 
@@ -85,9 +85,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                     userMap.put("name", name);
                     userMap.put("username", username);
+                    userMap.put("type", "farmer");
 
                     User user = new User(username,name,pass);
-                    ref.push().setValue(user);
+                    ref.push().setValue(userMap);
+
 
                     Map<String, Map<String, String>> users = new HashMap<String, Map<String, String>>();
                     users.put("user", userMap);
@@ -98,16 +100,21 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         ref.createUser(username, pass, new Firebase.ResultHandler() {
                             @Override
                             public void onSuccess() {
-                                Toast.makeText(RegisterActivity.this, "Successfully created user", Toast.LENGTH_LONG).show();
+                                String  userdb = username.replace(".com","");
+                                ref1 = new Firebase("https://flickering-inferno-9581.firebaseio.com/"+userdb);
+                                ref1.push().setValue(username);
+                                Toast.makeText(RegisterFarmerActivity.this, "Successfully created user", Toast.LENGTH_LONG).show();
+                                RegisterFarmerActivity.this.finish();
+                                startActivity(new Intent(RegisterFarmerActivity.this, LoginActivity.class));
                             }
 
                             @Override
                             public void onError(FirebaseError firebaseError) {
-                                Toast.makeText(RegisterActivity.this, "Registration Failed, Please Try Again", Toast.LENGTH_LONG).show();
+                                Toast.makeText(RegisterFarmerActivity.this, "Registration Failed, Please Try Again", Toast.LENGTH_LONG).show();
                             }
                         });
-                        RegisterActivity.this.finish();
-                        startActivity(new Intent(this, LoginActivity.class));
+
+
                     }
 
                 }
