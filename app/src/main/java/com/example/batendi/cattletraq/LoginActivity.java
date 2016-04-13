@@ -19,15 +19,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.client.AuthData;
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LoginActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener{
     Spinner spinner;
-    private Firebase mFirebaseRef;
+    private Firebase ref,ref1;
     private ProgressDialog mAuthProgressDialog;
     String item,userType;
     AuthData mAuthData;
@@ -35,6 +37,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
     private static final String TAG = LoginActivity.class.getSimpleName();
     Button cancel,login;
     EditText etPass, etUsername;
+    List<String> manList, fList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +46,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
         Firebase.setAndroidContext(this);
         setTitle("Login");
 
-        mFirebaseRef = new Firebase(getResources().getString(R.string.firebase_url));
+        ref = new Firebase(getResources().getString(R.string.firebase_url));
 
         mAuthProgressDialog = new ProgressDialog(this);
         mAuthProgressDialog.setTitle("Loading");
@@ -79,6 +82,31 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
         login.setOnClickListener(this);
         cancel.setOnClickListener(this);
 
+        ref1 = new Firebase("https://flickering-inferno-9581.firebaseio.com/users");
+        ref1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                manList = new ArrayList<String>();
+                fList = new ArrayList<String>();
+                for (DataSnapshot user1 : dataSnapshot.getChildren()) {
+                    userType = (String) user1.child("type").getValue();
+                    String user = (String) user1.child("username").getValue();
+                    if(userType.equals("farmer")){
+                        fList.add(user);
+                    }
+                    if(userType.equals("herdmanager")){
+                        manList.add(user);
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+            }
+        });
+
     }
 
     private void showErrorDialog(String message) {
@@ -109,9 +137,17 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                 onBackPressed();
                 break;
             case R.id.login_confirm:
-                mAuthProgressDialog.show();
-                mFirebaseRef.authWithPassword(etUsername.getText().toString(), etPass.getText().toString(), new AuthResultHandler("password"));
-                break;
+                if((fList.contains(etUsername.getText().toString())&& item.equals("Farmer"))||
+                        (manList.contains(etUsername.getText().toString())&& item.equals("Herdboy/Herdman"))) {
+                    mAuthProgressDialog.show();
+                    ref.authWithPassword(etUsername.getText().toString(), etPass.getText().toString(), new AuthResultHandler("password"));
+                }else{
+                    Toast.makeText(LoginActivity.this,"Wrong user type, Please Try Again",Toast.LENGTH_LONG).show();
+                    finish();
+                    startActivity(getIntent());
+                }
+
+            break;
         }
     }
 
