@@ -33,6 +33,7 @@ public class RegisterHerdManager extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_herd_manager);
+        Firebase.setAndroidContext(this);
 
         setTitle("Register Herd Manager");
 

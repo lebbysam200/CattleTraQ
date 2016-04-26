@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:text="Logout"
         android:id="@+id/logout"
-        android:layout_below="@+id/regManager"
+        android:layout_below="@+id/editDetails"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -64,6 +64,15 @@
         android:layout_alignEnd="@+id/delete_cow"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="View and Edit Cow Details"
+        android:id="@+id/editDetails"
+        android:layout_below="@+id/regManager"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 
 </RelativeLayout>

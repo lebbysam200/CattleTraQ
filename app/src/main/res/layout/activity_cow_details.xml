@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.batendi.cattletraq.CowDetails">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/logo"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/logo"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RFID:"
+        android:id="@+id/tvRfid"
+        android:layout_below="@+id/logo"
+        android:layout_marginTop="20dp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rfid"
+        android:layout_toRightOf="@+id/tvRfid"
+        android:layout_below="@id/logo"
+        android:layout_alignParentRight="true"
+        android:inputType="number"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvColor"
+        android:text="Color:"
+        android:layout_below="@+id/tvRfid"
+        android:layout_marginTop="20dp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/tvColor"
+        android:id="@+id/color"
+        android:layout_below="@+id/rfid"
+        android:layout_alignParentRight="true"
+        android:inputType="text"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvMotherRfid"
+        android:text="Mother RFID:"
+        android:layout_below="@+id/tvDob"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvDob"
+        android:text="Date of Birth:"
+        android:layout_below="@+id/color"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:id="@+id/save"
+        android:layout_below="@+id/tvKraalLocation"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cancelSave"
+        android:text="Cancel"
+        android:layout_below="@+id/save"
+        android:layout_alignParentLeft="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/motherRfid"
+        android:inputType="number"
+        android:layout_below="@+id/tvDob"
+        android:layout_toRightOf="@id/tvMotherRfid"
+        android:layout_alignParentRight="true"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/kraalLoc"
+        android:layout_below="@+id/motherRfid"
+        android:layout_alignRight="@+id/motherRfid"
+        android:layout_alignEnd="@+id/motherRfid"
+        android:layout_toRightOf="@+id/tvKraalLocation"
+        android:layout_toEndOf="@+id/tvKraalLocation"
+        android:inputType="text"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvKraalLocation"
+        android:text="Kraal Location:"
+        android:layout_below="@+id/tvMotherRfid"
+        android:layout_marginTop="25dp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/dob"
+        android:layout_below="@+id/color"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/tvDob"/>
+
+</RelativeLayout>

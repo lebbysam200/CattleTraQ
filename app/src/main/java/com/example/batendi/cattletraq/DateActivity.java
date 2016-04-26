@@ -28,10 +28,10 @@ public class DateActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()){
             case R.id.set:
                 String day = ""+datePicker.getDayOfMonth();
-                String month = "/"+datePicker.getMonth();
+                int month = datePicker.getMonth()+1;
                 String year = "/"+datePicker.getYear();
                 Cow cow = new Cow();
-                cow.birthdate = day+month+year;
+                cow.birthdate = day+"/"+month+year;
                 startActivity(new Intent(this,RegisterCowActivity.class));
                 finish();
                 break;

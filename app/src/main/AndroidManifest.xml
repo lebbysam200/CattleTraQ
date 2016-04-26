@@ -35,7 +35,9 @@
         <activity android:name=".DisplayLocationActivity" />
         <activity android:name=".DeleteCowActivity" />
         <activity android:name=".DateActivity" />
-        <activity android:name=".RegisterHerdManager"></activity>
+        <activity android:name=".RegisterHerdManager" />
+        <activity android:name=".ViewCowDetails" />
+        <activity android:name=".CowDetails"></activity>
     </application>
 
 </manifest>

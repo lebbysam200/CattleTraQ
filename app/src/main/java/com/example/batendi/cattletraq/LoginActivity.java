@@ -6,16 +6,12 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.client.AuthData;
@@ -94,7 +90,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                     if(userType.equals("farmer")){
                         fList.add(user);
                     }
-                    if(userType.equals("herdmanager")){
+                    if(userType.equals("herdmanager")||userType.equals("farmer")){
                         manList.add(user);
                     }
 

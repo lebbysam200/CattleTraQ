@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class HerdManagerActivity extends AppCompatActivity implements View.OnClickListener{
-    Button bRegCow,bLogKraal,bLogRelease,bLogout;
+    Button bRegCow,bLogKraal,bLogRelease,bLogout,bEditDetails;
     Firebase ref,ref1;
     String user,employer;
 
@@ -38,9 +38,9 @@ public class HerdManagerActivity extends AppCompatActivity implements View.OnCli
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot user1 : dataSnapshot.getChildren()) {
                     user = (String) user1.child("username").getValue();
-                    if (registerer.onlineUser.equals(user.replace(".com",""))) {
+                    if (registerer.onlineUser.equals(user.replace(".com", ""))) {
                         employer = (String) user1.child("employer").getValue();
-                        ref = new Firebase("https://flickering-inferno-9581.firebaseio.com/"+employer);
+                        ref = new Firebase("https://flickering-inferno-9581.firebaseio.com/" + employer);
                         break;
                     }
                 }
@@ -63,6 +63,9 @@ public class HerdManagerActivity extends AppCompatActivity implements View.OnCli
 
         bLogout = (Button) findViewById(R.id.logout);
         bLogout.setOnClickListener(this);
+
+        bEditDetails = (Button) findViewById(R.id.viewDetails);
+        bEditDetails.setOnClickListener(this);
     }
 
     @Override
@@ -75,6 +78,9 @@ public class HerdManagerActivity extends AppCompatActivity implements View.OnCli
                 onBackPressed();
                 startActivity(new Intent(this, LoginActivity.class));
                 Toast.makeText(this, "Please Login to Continue", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.viewDetails:
+                startActivity(new Intent(this,ViewCowDetails.class));
                 break;
             case R.id.release_time:
                 String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
