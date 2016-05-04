@@ -32,17 +32,18 @@ import com.firebase.client.ValueEventListener;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class DisplayLocationActivity extends AppCompatActivity implements View.OnClickListener {
 
     MyItemizedOverlay myItemizedOverlay = null;
-    MyLocationOverlay myLocationOverlay = null;
     double latitude;
     double longitude;
     String kraalLocation;
     Button path;
     String json = null;
-    GeoPoint gPt;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,7 @@ public class DisplayLocationActivity extends AppCompatActivity implements View.O
         path.setOnClickListener(this);
         Firebase.setAndroidContext(this);
         getKraalLocation();
+
     }
 
     public void getKraalLocation(){
@@ -73,7 +75,7 @@ public class DisplayLocationActivity extends AppCompatActivity implements View.O
                                 for (DataSnapshot city : dataSnapshot.getChildren()) {
                                     String city1 = (String) city.child("name").getValue();
 
-                                    if (kraalLocation.equals(city1) || kraalLocation.equals(city1)) {
+                                    if (kraalLocation.equals(city1)) {
                                         String latitude1 = city.child("latitude").getValue().toString();
                                         String longitude1 = (String) city.child("longitude").getValue();
                                         latitude = Double.parseDouble(latitude1);
@@ -105,10 +107,6 @@ public class DisplayLocationActivity extends AppCompatActivity implements View.O
                                         GeoPoint loc = new GeoPoint(latitude, longitude);
                                         myItemizedOverlay.addItem(loc, "loc", "loc");
 
-                                        myLocationOverlay = new MyLocationOverlay(DisplayLocationActivity.this, mapView);
-                                        mapView.getOverlays().add(myLocationOverlay);
-                                        myLocationOverlay.enableMyLocation();
-
                                     }
                                 }
                             }
@@ -129,17 +127,16 @@ public class DisplayLocationActivity extends AppCompatActivity implements View.O
         });
     }
 
+
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.getPath:
-                int mIncr = 10000;
                 PathOverlay myPath = new PathOverlay(Color.RED, this);
                 MapView mapView = (MapView) findViewById(R.id.mapview);
                 IMapController mapController = mapView.getController();
                 try {
                     InputStream is = this.getAssets().open("coordinates.json");
-                    Toast.makeText(this, "File!!!", Toast.LENGTH_SHORT).show();
                     int size = is.available();
                     byte[] buffer = new byte[size];
                     is.read(buffer);

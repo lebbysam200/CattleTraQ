@@ -21,15 +21,19 @@ import com.firebase.client.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GetCowLocationActivity extends AppCompatActivity {
+public class GetCowLocationActivity extends AppCompatActivity implements View.OnClickListener{
 
     String cowRfid;
+    Button bLocateAll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_cow_location);
         setTitle("Get Cow Location");
+
+        bLocateAll = (Button) findViewById(R.id.loc_all);
+        bLocateAll.setOnClickListener(this);
 
         Firebase.setAndroidContext(this);
 
@@ -63,5 +67,14 @@ public class GetCowLocationActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.loc_all:
+                startActivity(new Intent(this,LocateAll.class));
+                break;
+        }
     }
 }

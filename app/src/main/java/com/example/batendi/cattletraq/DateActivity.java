@@ -18,6 +18,7 @@ public class DateActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_date);
 
         datePicker = (DatePicker) findViewById(R.id.date);
+        setTitle("Cow Date of Birth");
 
         bSet = (Button) findViewById(R.id.set);
         bSet.setOnClickListener(this);

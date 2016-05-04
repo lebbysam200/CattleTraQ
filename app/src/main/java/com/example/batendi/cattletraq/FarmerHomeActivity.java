@@ -19,8 +19,6 @@ public class FarmerHomeActivity extends AppCompatActivity implements View.OnClic
 
     Button bLocateCow,bRegCow,bLogout,bDelete,bRegMan,bViewDetails;
     Firebase ref;
-    List<String> cattleList;
-    String cowRfid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

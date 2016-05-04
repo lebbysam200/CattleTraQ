@@ -29,8 +29,6 @@
         android:layout_height="wrap_content"
         android:text="Set"
         android:id="@+id/set"
-        android:layout_alignBottom="@+id/date"
-        android:layout_alignRight="@+id/logo"
-        android:layout_alignEnd="@+id/logo" />
+        android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>

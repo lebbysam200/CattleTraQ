@@ -2,6 +2,11 @@ package com.example.batendi.cattletraq;
 
 import com.firebase.client.Firebase;
 
+import org.osmdroid.util.GeoPoint;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by batendi on 3/17/16.
  */
@@ -15,6 +20,7 @@ public class User {
     public static String onlineUser;
     public static String onlineUserType;
     public static String employer;
+    public static ArrayList<GeoPoint> locationList;
 
     public User(){
         this.online = false;

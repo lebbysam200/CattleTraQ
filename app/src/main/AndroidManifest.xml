@@ -37,7 +37,8 @@
         <activity android:name=".DateActivity" />
         <activity android:name=".RegisterHerdManager" />
         <activity android:name=".ViewCowDetails" />
-        <activity android:name=".CowDetails"></activity>
+        <activity android:name=".CowDetails" />
+        <activity android:name=".LocateAll"></activity>
     </application>
 
 </manifest>
