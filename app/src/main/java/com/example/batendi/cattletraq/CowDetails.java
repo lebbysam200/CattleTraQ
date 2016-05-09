@@ -36,7 +36,7 @@ public class CowDetails extends AppCompatActivity implements View.OnClickListene
         setContentView(R.layout.activity_cow_details);
         Firebase.setAndroidContext(this);
 
-        setTitle("View and Edit Cow Details");
+        setTitle("Cow Details");
         final User registerer = new User();
         final Cow c = new Cow();
 
@@ -177,7 +177,7 @@ public class CowDetails extends AppCompatActivity implements View.OnClickListene
 
                         cowRef.setValue(cattleMap);
 
-                        Toast.makeText(this, "Successfully Added Cow", Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, "Cow Details Updated", Toast.LENGTH_LONG).show();
                         onBackPressed();
                     }
 

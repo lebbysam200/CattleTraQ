@@ -165,7 +165,6 @@ public class DisplayLocationActivity extends AppCompatActivity implements View.O
                 } catch (IOException ex) {
                     Toast.makeText(this, "File not found", Toast.LENGTH_SHORT).show();
                     ex.printStackTrace();
-                    //return null;
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

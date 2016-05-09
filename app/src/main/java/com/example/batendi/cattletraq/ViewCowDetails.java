@@ -26,7 +26,7 @@ public class ViewCowDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_cow_details);
-        setTitle("Get Cow Location");
+        setTitle("View And Edit Cow Details");
 
         Firebase.setAndroidContext(this);
 

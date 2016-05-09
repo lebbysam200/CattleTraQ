@@ -57,7 +57,11 @@ public class LocateAll extends AppCompatActivity {
 
                                     ResourceProxy resourceProxy = new DefaultResourceProxyImpl(getApplicationContext());
                                     IMapController mapController = mapView.getController();
+                                    mapView.setBuiltInZoomControls(true);
+                                    mapView.setMultiTouchControls(true);
+
                                     mapController.setCenter(new GeoPoint(-22.3285, 24.6849));
+                                    mapController.setZoom(15);
 
                                     myItemizedOverlay = new MyItemizedOverlay(marker, resourceProxy);
                                     mapView.getOverlays().add(myItemizedOverlay);

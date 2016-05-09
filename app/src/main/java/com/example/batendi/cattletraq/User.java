@@ -15,16 +15,15 @@ public class User {
 
     public String name;
     private String username;
-    String password;
+    public String password;
     boolean online;
     public static String onlineUser;
     public static String onlineUserType;
-    public static String employer;
-    public static ArrayList<GeoPoint> locationList;
 
     public User(){
         this.online = false;
     }
+
     public User(String name, String username,String password) {
         this.name = name;
         this.username = username;

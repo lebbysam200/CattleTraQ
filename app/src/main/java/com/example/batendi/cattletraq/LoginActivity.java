@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
 
         mAuthProgressDialog = new ProgressDialog(this);
         mAuthProgressDialog.setTitle("Loading");
-        mAuthProgressDialog.setMessage("Authenticating with Firebase...");
+        mAuthProgressDialog.setMessage("Logging you in...");
         mAuthProgressDialog.setCancelable(false);
 
         etUsername = (EditText) findViewById(R.id.username);
@@ -65,8 +65,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
 
         // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
-
-        // Drop down layout style - list view with radio button
+        
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         // attaching data adapter to spinner
