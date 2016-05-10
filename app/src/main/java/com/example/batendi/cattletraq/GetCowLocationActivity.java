@@ -44,7 +44,7 @@ public class GetCowLocationActivity extends AppCompatActivity implements View.On
             public void onDataChange(DataSnapshot dataSnapshot) {
                 List<String> cattleList = new ArrayList<String>();
                 for (DataSnapshot cow : dataSnapshot.getChildren()) {
-                    cowRfid = (String) cow.child("rfid").getValue();
+                    cowRfid = (String) cow.child("cow name").getValue();
                     cattleList.add(cowRfid);
                 }
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(GetCowLocationActivity.this, R.layout.rfid_list, cattleList);

@@ -26,7 +26,7 @@ public class RegisterCowActivity extends AppCompatActivity implements View.OnCli
 
     Button bCancelReg,bRegCow;
     EditText etRfid, etColor;
-    EditText etMotherRfid,etKraalLocation;
+    EditText etMotherRfid,etKraalLocation,etCowName;
     EditText etDob;
 
     Firebase ref,ref1;
@@ -104,6 +104,7 @@ public class RegisterCowActivity extends AppCompatActivity implements View.OnCli
         etDob = (EditText) findViewById(R.id.dob);
         etMotherRfid = (EditText) findViewById(R.id.motherRfid);
         etKraalLocation = (EditText) findViewById(R.id.kraalLoc);
+        etCowName = (EditText) findViewById(R.id.cowName);
 
         etDob.setText(myCow.birthdate);
         etDob.setEnabled(false);
@@ -125,6 +126,7 @@ public class RegisterCowActivity extends AppCompatActivity implements View.OnCli
                 String color = etColor.getText().toString();
                 String mother = etMotherRfid.getText().toString();
                 String kraal = etKraalLocation.getText().toString();
+                String cowName = etCowName.getText().toString();
 
                 String dob = myCow.birthdate;
 
@@ -149,12 +151,18 @@ public class RegisterCowActivity extends AppCompatActivity implements View.OnCli
                         Toast.makeText(this, "Please enter a valid location name", Toast.LENGTH_LONG).show();
                         finish();
                         startActivity(getIntent());
-                    }else if(!validateString(rfid)&&validateString(kraal)&&!validateString(mother)&&validateString(color)){
+                    }
+                    if(validateString(cowName)==false){
+                        Toast.makeText(this, "Please enter a valid cow name", Toast.LENGTH_LONG).show();
+                        finish();
+                        startActivity(getIntent());
+                    }else if(!validateString(rfid)&&validateString(kraal)&&!validateString(mother)&&validateString(color)&&validateString(cowName)){
                         cattleMap.put("rfid", rfid);
                         cattleMap.put("color", color);
                         cattleMap.put("dob", dob);
                         cattleMap.put("mother", mother);
                         cattleMap.put("kraal location", kraal);
+                        cattleMap.put("cow name", cowName);
 
                         ref.push().setValue(cattleMap);
 

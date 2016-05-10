@@ -63,8 +63,8 @@ public class DisplayLocationActivity extends AppCompatActivity implements View.O
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot cow : dataSnapshot.getChildren()) {
-                    String rfid = (String) cow.child("rfid").getValue();
-                    Cow mycow = new Cow();
+                    String rfid = (String) cow.child("cow name").getValue();
+                    final Cow mycow = new Cow();
                     String cowRfid = mycow.rfid;
                     if (rfid.equals(cowRfid)) {
                         kraalLocation = (String) cow.child("kraal location").getValue();
@@ -105,6 +105,7 @@ public class DisplayLocationActivity extends AppCompatActivity implements View.O
                                         mapView.getOverlays().add(myItemizedOverlay);
 
                                         GeoPoint loc = new GeoPoint(latitude, longitude);
+                                        mycow.location = loc;
                                         myItemizedOverlay.addItem(loc, "loc", "loc");
 
                                     }
@@ -151,10 +152,13 @@ public class DisplayLocationActivity extends AppCompatActivity implements View.O
                         double lng = jo_inside.getDouble("longitude");
 
 
-                        GeoPoint gPnt0 = new GeoPoint(-lat, lng);
+                        GeoPoint gPnt0 = new GeoPoint(lat, lng);
                         myPath.addPoint(gPnt0);
 
                     }
+                    Cow newCow = new Cow();
+                    myPath.addPoint(newCow.location);
+
                     mapView.setTileSource(TileSourceFactory.MAPNIK);
                     mapView.setBuiltInZoomControls(true);
                     mapView.setMultiTouchControls(true);

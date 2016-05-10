@@ -22,10 +22,10 @@ public class CowDetails extends AppCompatActivity implements View.OnClickListene
     Button bCancel,bSave;
     EditText etRfid, etColor;
     EditText etMotherRfid,etKraalLocation;
-    EditText etDob;
+    EditText etDob,etCowName;
 
     Firebase cowRef,ref,ref1;
-    String cowRfid,user,dob,color,motherRFID,kraalLoc;
+    String cowRfid,user,dob,color,motherRFID,kraalLoc,cowname;
     List<String> cattleList;
     String employer;
 
@@ -45,6 +45,8 @@ public class CowDetails extends AppCompatActivity implements View.OnClickListene
         etDob = (EditText) findViewById(R.id.dob);
         etMotherRfid = (EditText) findViewById(R.id.motherRfid);
         etKraalLocation = (EditText) findViewById(R.id.kraalLoc);
+        etCowName = (EditText) findViewById(R.id.cowName);
+
         if(registerer.onlineUserType.equals("farmer")){
             ref = new Firebase("https://flickering-inferno-9581.firebaseio.com/"+registerer.onlineUser+"/cattle");
 
@@ -59,6 +61,7 @@ public class CowDetails extends AppCompatActivity implements View.OnClickListene
                             color = (String) cow.child("color").getValue();
                             motherRFID = (String) cow.child("mother").getValue();
                             kraalLoc = (String) cow.child("kraal location").getValue();
+                            cowname = (String) cow.child("cow name").getValue();
 
                             etRfid.setText(cowRfid);
                             etColor.setText(color);
@@ -66,6 +69,7 @@ public class CowDetails extends AppCompatActivity implements View.OnClickListene
                             etDob.setEnabled(false);
                             etMotherRfid.setText(motherRFID);
                             etKraalLocation.setText(kraalLoc);
+                            etCowName.setText(cowname);
 
                             cowRef = cow.getRef();
                             cattleList.add(cowRfid);
@@ -98,6 +102,7 @@ public class CowDetails extends AppCompatActivity implements View.OnClickListene
                                             color = (String) cow.child("color").getValue();
                                             motherRFID = (String) cow.child("mother").getValue();
                                             kraalLoc = (String) cow.child("kraal location").getValue();
+                                            cowname = (String) cow.child("cow name").getValue();
 
                                             etRfid.setText(cowRfid);
                                             etColor.setText(color);
@@ -105,6 +110,7 @@ public class CowDetails extends AppCompatActivity implements View.OnClickListene
                                             etDob.setEnabled(false);
                                             etMotherRfid.setText(motherRFID);
                                             etKraalLocation.setText(kraalLoc);
+                                            etCowName.setText(cowname);
 
                                             cowRef = cow.getRef();
                                             cattleList.add(cowRfid);
@@ -146,6 +152,7 @@ public class CowDetails extends AppCompatActivity implements View.OnClickListene
                 String mother = etMotherRfid.getText().toString();
                 String kraal = etKraalLocation.getText().toString();
                 String dob = etDob.getText().toString();
+                String cowName = etCowName.getText().toString();
 
                 if (!rfid.equals("")) {
                     Map<String, String> cattleMap = new HashMap<String, String>();
@@ -168,12 +175,18 @@ public class CowDetails extends AppCompatActivity implements View.OnClickListene
                         Toast.makeText(this, "Please enter a valid location name", Toast.LENGTH_LONG).show();
                         finish();
                         startActivity(getIntent());
-                    }else if(!validateString(rfid)&&validateString(kraal)&&!validateString(mother)&&validateString(color)){
+                    }
+                    if(validateString(cowName)==false){
+                        Toast.makeText(this, "Please enter a valid cow name", Toast.LENGTH_LONG).show();
+                        finish();
+                        startActivity(getIntent());
+                    }else if(!validateString(rfid)&&validateString(kraal)&&!validateString(mother)&&validateString(color)&&validateString(cowName)){
                         cattleMap.put("rfid", rfid);
                         cattleMap.put("color", color);
                         cattleMap.put("dob", dob);
                         cattleMap.put("mother", mother);
                         cattleMap.put("kraal location", kraal);
+                        cattleMap.put("cow name",cowName);
 
                         cowRef.setValue(cattleMap);
 

@@ -41,7 +41,7 @@ public class DeleteCowActivity extends AppCompatActivity {
                 final List<String> cattleList = new ArrayList<String>();
                 for (DataSnapshot cow : dataSnapshot.getChildren()) {
                     cowRef = cow.getRef();
-                    cowRfid = (String) cow.child("rfid").getValue();
+                    cowRfid = (String) cow.child("cow name").getValue();
                     cattleList.add(cowRfid);
 
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(DeleteCowActivity.this, R.layout.rfid_list, cattleList);

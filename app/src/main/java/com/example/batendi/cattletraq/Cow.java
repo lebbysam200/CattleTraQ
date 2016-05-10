@@ -1,5 +1,7 @@
 package com.example.batendi.cattletraq;
 
+import org.osmdroid.util.GeoPoint;
+
 /**
  * Created by batendi on 3/18/16.
  */
@@ -7,6 +9,7 @@ public class Cow
 {
     public static String rfid ;
     public static String birthdate;
+    public static GeoPoint location;
     private String color;
 
     public Cow()
